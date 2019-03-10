@@ -10,7 +10,7 @@ public abstract class Game {
     private IRole playerRole;
     private final String GAME_NAME;
     private final int MAX_PLAYERS;
-    abstract boolean vote(String input,  RhoUser player);
+    abstract boolean vote(String input,  IUser player);
     abstract IInvite createInvite();
     abstract void runGame();
     public Game(){

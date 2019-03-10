@@ -1,5 +1,6 @@
 import sx.blah.discord.handle.obj.IChannel;
 import sx.blah.discord.handle.obj.IInvite;
+import sx.blah.discord.handle.obj.IUser;
 
 import java.util.ArrayList;
 import java.util.Queue;
@@ -48,6 +49,7 @@ public class BlackJackGame extends Game{
             +"\n Would you like to stand or hit?");
             WaitForUserInput waitForUserInput = new WaitForUserInput(new String[]{"HIT","PASS"},getGameChannel(),getPlayers().get(x).getUser());
             executor.submit(waitForUserInput);
+            waitThreads.add(waitForUserInput);
             RhoEventHandler.getInputScheduler().scheduleWaitThread(waitForUserInput);
         }
         RhoMain.sendMessage(this.getGameChannel(),"This is the dealer's hand: \n" + dealHand + "\n Waiting on players to make a decision...");
@@ -55,6 +57,9 @@ public class BlackJackGame extends Game{
             executor.awaitTermination(60,TimeUnit.SECONDS);
         }catch(InterruptedException e){
             e.printStackTrace();
+        }
+        for(WaitForUserInput waitThread:waitThreads){
+            vote(waitThread.getUserInput(),waitThread.getUser());
         }
     }
     void runGame(){
@@ -140,7 +145,7 @@ public class BlackJackGame extends Game{
         return true;
     }
     @Override
-    public boolean vote(String input,RhoUser player){
+    public boolean vote(String input,IUser player){
         if(input.toUpperCase().equals("HIT")){
             for(int x = 0; x < getPlayers().size(); x++){
                 if(getPlayers().get(x).equals(player)){

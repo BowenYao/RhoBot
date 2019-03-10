@@ -22,6 +22,7 @@ import java.util.*;
 
 import static java.lang.Thread.sleep;
 import static org.apache.commons.lang3.StringUtils.join;
+import static org.apache.commons.lang3.StringUtils.mid;
 
 public class RhoEventHandler{
     private static final String COMMAND_TRIGGER = "]]";
@@ -375,7 +376,8 @@ public class RhoEventHandler{
                 inputScheduler.checkInput(e.getMessage());
                 }
             } else {
-                if(!)
+            if (!inputScheduler.checkInput(e.getMessage())) {
+
                 if (e.getMessage().getContent().startsWith(COMMAND_TRIGGER)) {
                     System.out.println("Command Triggered:");
                     String command = e.getMessage().getContent().replaceFirst(COMMAND_TRIGGER, "").trim();
@@ -570,13 +572,14 @@ public class RhoEventHandler{
                     } else if (command.startsWith("test")) {
                         Game game = new BlackJackGame(RhoUser.findRhoUser(rhoUsers,e.getAuthor()), e.getChannel());
                         game.startGame(gameServer);
-                          }
-                        //MessageReceivedEvent messageReceivedEvent = new MessageReceivedEvent(e.getMessage());
-
                     }
+                    //MessageReceivedEvent messageReceivedEvent = new MessageReceivedEvent(e.getMessage());
+
                 }
             }
         }
+    }
+
         @EventSubscriber
         public void onAction (GuildEvent e){
             System.out.println("GuildAction Occured");
