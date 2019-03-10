@@ -8,7 +8,7 @@ import java.util.concurrent.*;
 
 public class BlackJackGame extends Game{
     private Hand[] hands;
-    private RhoUser[] finalPlayers;
+    private IUser[] finalPlayers;
     private ArrayList<Hand> inHands;
     private ArrayList<Boolean> votePool;
     private ArrayList<WaitForUserInput> waitThreads = new ArrayList<>();
@@ -27,14 +27,17 @@ public class BlackJackGame extends Game{
         return invite;
     }
     void startGame(){
-        finalPlayers = this.getPlayers().toArray(new RhoUser[0]);
+
+    }
+    void runGame(){
+        finalPlayers = this.getPlayers().toArray(new IUser[0]);
         hands = new Hand[this.getPlayers().size()];
         inHands = new  ArrayList<Hand>();
         votePool = new ArrayList<Boolean>(this.getPlayers().size());
         deck = new Deck(false);
         System.out.println(deck.getCards().size());
         for(int x = 0; x < this.getPlayers().size(); x++){
-            System.out.println(this.getPlayers().get(x).getUser().getName());
+            System.out.println(this.getPlayers().get(x).getName());
             Hand hand = deck.dealHand(2);
             hands[x] = hand;
             inHands.add(hand);
@@ -44,10 +47,10 @@ public class BlackJackGame extends Game{
         BlockingQueue<Runnable> runQueue = new ArrayBlockingQueue<Runnable>(getPlayers().size());
         ThreadPoolExecutor executor = new ThreadPoolExecutor(getPlayers().size()/2, getPlayers().size(),3,TimeUnit.SECONDS,runQueue);
         for(int x = 0; x < getPlayers().size(); x++){
-            getPlayers().get(x).addGame(this);
-            RhoMain.sendMessage(getGameChannel(),getPlayers().get(x).getUser().mention() + "This is your hand: \n" + hands[x]
-            +"\n Would you like to stand or hit?");
-            WaitForUserInput waitForUserInput = new WaitForUserInput(new String[]{"HIT","PASS"},getGameChannel(),getPlayers().get(x).getUser());
+           // getPlayers().get(x).addGame(this);
+            RhoMain.sendMessage(getGameChannel(),getPlayers().get(x).mention() + "This is your hand: \n" + hands[x]
+                    +"\n Would you like to stand or hit?");
+            WaitForUserInput waitForUserInput = new WaitForUserInput(new String[]{"HIT","STAND"},getGameChannel(),getPlayers().get(x));
             executor.submit(waitForUserInput);
             waitThreads.add(waitForUserInput);
             RhoEventHandler.getInputScheduler().scheduleWaitThread(waitForUserInput);
@@ -61,21 +64,7 @@ public class BlackJackGame extends Game{
         for(WaitForUserInput waitThread:waitThreads){
             vote(waitThread.getUserInput(),waitThread.getUser());
         }
-    }
-    void runGame(){
-        for(int x = 0; x < getPlayers().size(); x++){
-            RhoMain.sendMessage(getGameChannel(),getPlayers().get(x).getUser().mention() + " This is your hand: \n" + inHands.get(x) + "\n Would you like to stand or  hit?");
-        }
-        RhoMain.sendMessage(getGameChannel(),"This is the dealer's hand: \n" + dealHand + "\n Waiting on players to make a decision...");
-        ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(1);
-        ScheduledFuture<?> waitForVotes = executor.scheduleAtFixedRate(() ->{System.out.println("And I'm ");
-            System.out.println("waiting");
-            if(voteFinished()){
-                System.out.println("waiting on the world to change");
-                executor.shutdown();
-                continueGame();
-            }
-        },0,1,TimeUnit.SECONDS);
+
     }
     private void continueGame(){
         ArrayList<Integer> playerPos = new ArrayList<>(getPlayers().size());
@@ -84,9 +73,9 @@ public class BlackJackGame extends Game{
             if(votePool.get(x)){
                 System.out.println(deck.drawCard());
                 hands[x].addCard(deck.drawCard());
-                RhoMain.sendMessage(getPlayers().get(x).getUser().getOrCreatePMChannel(),"This is your new hand: " + hands[x].toString());
+                RhoMain.sendMessage(getPlayers().get(x).getOrCreatePMChannel(),"This is your new hand: " + hands[x].toString());
             }else{
-                RhoMain.sendMessage(getPlayers().get(x).getUser().getOrCreatePMChannel(), "You finished the game with this hand: " + hands[x] +
+                RhoMain.sendMessage(getPlayers().get(x).getOrCreatePMChannel(), "You finished the game with this hand: " + hands[x] +
                         " It has a value of " + calculateHand(hands[x]));
                 playerPos.add(x);
             }

@@ -45,12 +45,7 @@ public class GameScheduler extends Thread{
                         game.deleteGame();
                   //  }
                 }
-                if(extendedInvite.getUses() == 0 ){
-                    game.deleteGame();
-                    invite.delete();
-                }else{
-                        game.runGame();
-                }
+                game.runGame();
             }
             try {
                 this.sleep(1000);

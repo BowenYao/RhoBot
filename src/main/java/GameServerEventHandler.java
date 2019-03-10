@@ -27,6 +27,7 @@ public class GameServerEventHandler {
     }
     private static void userJoinEvent(UserJoinEvent e){
         e.getUser().addRole(currentGame.getPlayerRole());
+        currentGame.addPlayer(e.getUser());
         System.out.println(e.getUser() + " joined game server");
     }
     private static void channelCreateEvent(ChannelCreateEvent e){

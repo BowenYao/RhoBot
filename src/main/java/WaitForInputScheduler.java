@@ -8,10 +8,13 @@ public class WaitForInputScheduler {
         waitThreads.add(waitThread);
     }
     public boolean checkInput(IMessage message){
-        ArrayList<WaitForUserInput> matchingWaitThreads = new ArrayList<>();
         for(WaitForUserInput waitThread: waitThreads) {
             if (waitThread.getUser().equals(message.getAuthor())) {
-                if (!(waitThread.getListeningChannel() != null && waitThread.getListeningChannel().equals(message.getChannel()))) {
+                if (waitThread.getListeningChannel() != null && waitThread.getListeningChannel().equals(message.getChannel())) {
+                    waitThread.setUserInput(message.getContent());
+                    System.out.println("Wait thread consumed input");
+                    return true;
+                }else if(waitThread.getListeningChannel() == null){
                     waitThread.setUserInput(message.getContent());
                     return true;
                 }

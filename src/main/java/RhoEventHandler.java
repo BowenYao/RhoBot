@@ -361,41 +361,40 @@ public class RhoEventHandler{
     //Handles message events
     @EventSubscriber
     public void onMessageEvent(MessageReceivedEvent e) {
-        if (!e.getAuthor().isBot()) { //Bot check prevents looping and other shenanigans
+        if (!e.getAuthor().isBot()) {//Bot check prevents looping and other shenanigans
             if (e.getChannel().isPrivate()) {
                 System.out.println("Private Event Triggered");
-              //  RhoUser rhoUser = RhoUser.findRhoUser(rhoUsers, e.getAuthor());
-              //  ArrayList<Game> gameList = rhoUser.getGames();
-             //   boolean gameCommand = false;
-             //   for (Game game : gameList) {
-             //       if (game.vote(e.getMessage().getContent(), rhoUser)) {
-             //           gameCommand = true;
-              //          break;
-             //       }
+                //  RhoUser rhoUser = RhoUser.findRhoUser(rhoUsers, e.getAuthor());
+                //  ArrayList<Game> gameList = rhoUser.getGames();
+                //   boolean gameCommand = false;
+                //   for (Game game : gameList) {
+                //       if (game.vote(e.getMessage().getContent(), rhoUser)) {
+                //           gameCommand = true;
+                //          break;
+                //       }
                 //I decided to change my method of input for now but I'll leave this up in case I want to go back
                 inputScheduler.checkInput(e.getMessage());
-                }
-            } else {
-            if (!inputScheduler.checkInput(e.getMessage())) {
 
-                if (e.getMessage().getContent().startsWith(COMMAND_TRIGGER)) {
-                    System.out.println("Command Triggered:");
-                    String command = e.getMessage().getContent().replaceFirst(COMMAND_TRIGGER, "").trim();
-                    System.out.println(command);
-                    //Removes the command trigger from the command message
-                    if (command.toUpperCase().startsWith("HELP")) {
-                        try {
-                            Scanner s = new Scanner(new File("helpText.txt"));
-                            String helpMessage = "";
-                            while (s.hasNext()) {
-                                helpMessage += s.nextLine() + "\n";
+            } else {
+                if (!inputScheduler.checkInput(e.getMessage())) {
+                    if (e.getMessage().getContent().startsWith(COMMAND_TRIGGER)) {
+                        System.out.println("Command Triggered:");
+                        String command = e.getMessage().getContent().replaceFirst(COMMAND_TRIGGER, "").trim();
+                        System.out.println(command);
+                        //Removes the command trigger from the command message
+                        if (command.toUpperCase().startsWith("HELP")) {
+                            try {
+                                Scanner s = new Scanner(new File("helpText.txt"));
+                                String helpMessage = "";
+                                while (s.hasNext()) {
+                                    helpMessage += s.nextLine() + "\n";
+                                }
+                                RhoMain.sendMessage(e.getChannel(), helpMessage);
+                            } catch (IOException ex) {
+                                ex.printStackTrace();
                             }
-                            RhoMain.sendMessage(e.getChannel(), helpMessage);
-                        } catch (IOException ex) {
-                            ex.printStackTrace();
-                        }
-                        //Help message. Should probably make it a constant somewhere else at some point
-                    }/*else if(command.toUpperCase().startsWith("SAY")){
+                            //Help message. Should probably make it a constant somewhere else at some point
+                        }/*else if(command.toUpperCase().startsWith("SAY")){
                 String message = command.substring(3).trim();
                 //removes say from command
                 System.out.println("\tSpeech command from " + e.getAuthor().getName() + " recognized");
@@ -403,178 +402,185 @@ public class RhoEventHandler{
                 System.out.println("\tSent the following message: " + message + " to the " + e.getChannel().getName() +
                                 " channel on the " + e.getGuild().getName() + " server"); //A little bit of self-logging
             } Removed say function because it is redundant and encourages spam*/ else if (command.toUpperCase().equals("BLACKJACK")) {
-                        RhoUser rhoUser = RhoUser.findRhoUser(rhoUsers, e.getAuthor());
-                        Game game = new BlackJackGame(rhoUser, e.getChannel());
-                        rhoUser.addGame(game);
-                        game.startGame(gameServer);
-                        System.out.println("Started blackjack game");
-                    } else if (command.matches("^(?i)(remind ??me).*")) {
-                        System.out.println("Remind Me Command Triggered");
-                        //Remind function has rhobot dm a specific user in after a specified interval of time has passed
-                        //Might have to change this later but currently remind me starts a new thread that sleeps for the given duration
-                        command = command.replaceFirst("(?i)(remind ??me)", " ");
-                        //We using regex now boys
-                        if (!command.contains(" in ")) {
-                            RhoMain.sendMessage(e.getChannel(), "Oops! Looks like your reminder might have been formatted incorrectly.\n Try formatting like so: \n" + Reminder.REMINDER_FORMAT);
-                            //A little bit of garbage protection
-                        } else {
-                            String message = command.substring(0, command.lastIndexOf(" in "));
-                            //gets the message part of the reminder command
+                            RhoUser rhoUser = RhoUser.findRhoUser(rhoUsers, e.getAuthor());
+                            Game game = new BlackJackGame(rhoUser, e.getChannel());
+                            rhoUser.addGame(game);
+                            game.startGame(gameServer);
+                            System.out.println("Started blackjack game");
+                        } else if (command.matches("^(?i)(remind ??me).*")) {
+                            System.out.println("Remind Me Command Triggered");
+                            //Remind function has rhobot dm a specific user in after a specified interval of time has passed
+                            //Might have to change this later but currently remind me starts a new thread that sleeps for the given duration
+                            command = command.replaceFirst("(?i)(remind ??me)", " ");
+                            //We using regex now boys
+                            if (!command.contains(" in ")) {
+                                RhoMain.sendMessage(e.getChannel(), "Oops! Looks like your reminder might have been formatted incorrectly.\n Try formatting like so: \n" + Reminder.REMINDER_FORMAT);
+                                //A little bit of garbage protection
+                            } else {
+                                String message = command.substring(0, command.lastIndexOf(" in "));
+                                //gets the message part of the reminder command
 
-                            String duration = command.substring(command.lastIndexOf(" in ") + 3).trim();
-                            //gets the duration part of the reminder command
+                                String duration = command.substring(command.lastIndexOf(" in ") + 3).trim();
+                                //gets the duration part of the reminder command
                             /*checking for " in " instead of in prevents the word minutes from screwing things up
                             Also the last index of prevents messages that contain in from messing things up but screw
                             you I ain't protecting against extra garbage after the command*/
-                            long durationInMillis;
-                            try {
-                                durationInMillis = DurationParser.parse(duration);
-                            } catch (IllegalArgumentException re) {
-                                RhoMain.sendMessage(e.getChannel(), e.getAuthor().mention() + " " + re.getMessage());
-                                return;
-                            }
-                            Reminder reminder = new Reminder(e.getAuthor(), durationInMillis, message.trim());
-                            RhoMain.sendMessage(e.getAuthor().getOrCreatePMChannel(), "Hey " + e.getAuthor().mention() + " I'm going to remind you " + message.trim() + " in " + DurationParser.parseMillis(durationInMillis));
-                            if (durationInMillis > 60000)
-                                reminder.addToDatabase();
-                            else
-                                reminder.start();
-                            //starts the reminder thread only if the remind is a minute or less long
+                                long durationInMillis;
+                                try {
+                                    durationInMillis = DurationParser.parse(duration);
+                                } catch (IllegalArgumentException re) {
+                                    RhoMain.sendMessage(e.getChannel(), e.getAuthor().mention() + " " + re.getMessage());
+                                    return;
+                                }
+                                Reminder reminder;
+                                try {
+                                     reminder = new Reminder(e.getAuthor(), durationInMillis, message.trim());
+                                }catch(IllegalArgumentException re){
+                                    RhoMain.sendMessage(e.getChannel(),e.getMessage().mentionsEveryone() + " " + re.getMessage());
+                                    return;
+                                }
+                                RhoMain.sendMessage(e.getAuthor().getOrCreatePMChannel(), "Hey " + e.getAuthor().mention() + " I'm going to remind you " + message.trim() + " in " + DurationParser.parseMillis(durationInMillis));
+                                if (durationInMillis > 60000)
+                                    reminder.addToDatabase();
+                                else
+                                    reminder.start();
+                                //starts the reminder thread only if the remind is a minute or less long
                                 /* creates a new reminder thread and sends the duration to duration parser which returns a long in milliseconds.
                                 Duration should be in format [integer hour(s)] [integer minute(s)] ]integer second(s)]
                                 reminder  constructors throw an illegal argument exception if the duration is negative
                                 parser throws an illegal argument exception if the duration isn't properly formatted */
 
 
-                        }
-                    } else if (command.matches("^(?i)(download ??ram).*")) {
-                        String ramName = command.replaceFirst("^(?i)(download ??ram)", "").trim();
-                        if (ramName.isEmpty()) {
-                            RhoMain.sendMessage(e.getChannel(), e.getAuthor().mention() + " Please specify a name for your ram and try again");
-                            return;
-                        }
-                        if (Ram.checkOwned(ramName, e.getAuthor().getStringID())) {
-                            RhoMain.sendMessage(e.getChannel(), e.getAuthor().mention() + " Looks like you already own a ram named " + ramName + "." +
-                                    "\n If you want to call " + ramName + " try using the ]]call function." +
-                                    "\n Otherwise, please download a ram with a new name");
-                        } else {
-                            Ram ram = new Ram(ramName);
-                            Date date = new Date();
-                            RhoMain.sendMessage(e.getChannel(), ram);
-                            System.out.println("Loading ram animation took " + (new Date().getTime() - date.getTime()) + " milliseconds");
-                            ram.addToDatabase(e.getAuthor());
-                            //NOTE TO SELF: I should probably make the exception handling better
-                        }
-
-                    } else if (command.matches("^(?i)(call) .*")) {
-                        String ramName = command.replaceFirst("^(?i)(call) ", "");
-                        int ramLocation = Ram.searchRam(ramName, e.getAuthor().getStringID());
-                        if (ramLocation > -1) {
-                            try {
-                                RhoMain.sendMessage(e.getChannel(), Ram.getRamFromDatabase(ramLocation));
-                            } catch (IOException | GeneralSecurityException ex) {
-                                ex.printStackTrace();
-                                RhoMain.sendMessage(e.getChannel(), e.getAuthor().mention() + " It looks like there was an error retrieving " + ramName + " from my database.\n Please try again later.");
                             }
-                        } else {
-                            RhoMain.sendMessage(e.getChannel(), "Sorry " + e.getAuthor().mention() + ". It looks like you don't own a ram by the name of " + ramName.trim());
-                        }
-                    } else if (command.matches("^(?i)(set ??intro ??song)") && e.getMessage().getAttachments().size() > 0) {
-                        List<IMessage.Attachment> attachments = e.getMessage().getAttachments();
-                        String fileName = "";
-                        File attachment = null;
-                        try {
-                            URL attachmentUrl = new URL(attachments.get(0).getUrl());
-                            File tempCache = new File("tempCache");
-                            tempCache.mkdir();
-                            attachment = new File(tempCache.getPath() + "\\" + attachments.get(0).getFilename());
-                            FileUtils.copyURLToFile(attachmentUrl, attachment);
-                            fileName = attachment.getName();
-                        } catch (IOException ex) {
-                            ex.printStackTrace();
-                        }
-                        boolean tooLong = false;
-                        try {
-                            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(attachment);
-                            AudioFormat format = audioInputStream.getFormat();
-                            System.out.println(format.toString());
-                            int frameSize = format.getFrameSize();
-                            if (format.getFrameSize() == -1 && attachment.getName().endsWith(".mp3")) {
-                                frameSize = (int) (144 * ((int) format.properties().get("bitrate")) / format.getSampleRate());
-                                System.out.println(frameSize + " Framesize | " + format.getSampleRate());
-                            }
-                            float audioLength = attachment.length() / (frameSize * format.getFrameRate());
-                            System.out.println(attachment.length() + " | " + format.getFrameRate() + " | " + format.getFrameSize() + " | " + audioLength + " seconds");
-                            if (audioLength > 60) {
-                                tooLong = true;
-                                int newLength = (int) (30 * frameSize * format.getFrameRate());
-                                byte[] byteArray = new byte[newLength];
-                                audioInputStream.read(byteArray);
-                                File testFile = new File(attachment.getParent() + "\\tempIntro" + attachment.getName().substring(attachment.getName().lastIndexOf('.')));
-                                FileOutputStream test = new FileOutputStream(testFile);
-                                test.write(byteArray);
-                                test.close();
-                                audioInputStream.close();
-                                attachment = testFile;
-                            }
-                            audioInputStream.close();
-                        } catch (UnsupportedAudioFileException | IOException unsupportedAudioFile) {
-                            unsupportedAudioFile.printStackTrace();
-                            RhoMain.sendMessage(e.getChannel(), e.getAuthor().mention() + "Looks like the file you uploaded isn't a supported audio file");
-                            return;
-                        }
-                        javax.activation.MimetypesFileTypeMap fileTypeMap = new MimetypesFileTypeMap();
-                        String mimeType = fileTypeMap.getContentType(attachment);
-                        FileContent mediaContent = new FileContent(mimeType, attachment);
-                        System.out.println(mediaContent.getType());
-                        try {
-                            Drive service = RhoMain.createDriveService();
-                            List<String> parents = new ArrayList<>();
-                            parents.add(HiddenInfo.getIntroSongParent());
-                            com.google.api.services.drive.model.File fileMetadata = new com.google.api.services.drive.model.File();
-                            System.out.println(fileMetadata.getFileExtension());
-                            fileMetadata.setName(e.getAuthor().getName() + "'s Intro Song" + fileName.substring(fileName.lastIndexOf('.')));
-                            fileMetadata.setParents(parents);
-                            com.google.api.services.drive.model.File introSongFile = service.files().create(fileMetadata, mediaContent).setFields("id, parents").execute();
-                            RhoUser rhoUser = RhoUser.findRhoUser(rhoUsers, e.getAuthor());
-                            if (!rhoUser.getIntroSong().equals("null")) {
-                                Drive.Files.Delete deleteExistingIntroSong = service.files().delete(rhoUser.getIntroSong());
-                                deleteExistingIntroSong.execute();
-                            }
-                            rhoUser.setIntroSong(introSongFile.getId());
-                            System.out.println(rhoUser.getIntroSong() + " | " + rhoUser.getUser().getName());
-                            rhoUser.updateDatabase();
-                            String message = e.getAuthor().mention() + " your intro song was succesfully set and stored!";
-                            if (tooLong)
-                                message += "But... it was longer than one minute so I trimmed it to thirty seconds for you";
-                            RhoMain.sendMessage(e.getChannel(), message);
-                        } catch (IOException | GeneralSecurityException ex) {
-                            ex.printStackTrace();
-                        }
-                        try {
-                            FileUtils.deleteDirectory(attachment.getParentFile());
-                        } catch (IOException ex) {
-                            ex.printStackTrace();
-                        }
-                    } else if (command.matches("^(?i)(toggle ??intro ??song)")) {
-                        if (e.getAuthor().getPermissionsForGuild(e.getGuild()).contains(Permissions.ADMINISTRATOR)) {
-                            RhoServer rhoServer = RhoServer.findRhoServer(rhoServers, e.getGuild().getStringID());
-                            boolean allowsIntroSongs = rhoServer.getAllowsIntroSongs();
-                            rhoServer.setAllowsIntroSongs(!allowsIntroSongs);
-                            try {
-                                rhoServer.updateDatabase();
-                            } catch (GeneralSecurityException | IOException ex) {
-                                ex.printStackTrace();
+                        } else if (command.matches("^(?i)(download ??ram).*")) {
+                            String ramName = command.replaceFirst("^(?i)(download ??ram)", "").trim();
+                            if (ramName.isEmpty()) {
+                                RhoMain.sendMessage(e.getChannel(), e.getAuthor().mention() + " Please specify a name for your ram and try again");
                                 return;
                             }
-                            RhoMain.sendMessage(e.getChannel(), e.getAuthor().mention() + " Intro songs successfully toggled to " + rhoServer.getAllowsIntroSongs());
-                        }
-                    } else if (command.startsWith("test")) {
-                        Game game = new BlackJackGame(RhoUser.findRhoUser(rhoUsers,e.getAuthor()), e.getChannel());
-                        game.startGame(gameServer);
-                    }
-                    //MessageReceivedEvent messageReceivedEvent = new MessageReceivedEvent(e.getMessage());
+                            if (Ram.checkOwned(ramName, e.getAuthor().getStringID())) {
+                                RhoMain.sendMessage(e.getChannel(), e.getAuthor().mention() + " Looks like you already own a ram named " + ramName + "." +
+                                        "\n If you want to call " + ramName + " try using the ]]call function." +
+                                        "\n Otherwise, please download a ram with a new name");
+                            } else {
+                                Ram ram = new Ram(ramName);
+                                Date date = new Date();
+                                RhoMain.sendMessage(e.getChannel(), ram);
+                                System.out.println("Loading ram animation took " + (new Date().getTime() - date.getTime()) + " milliseconds");
+                                ram.addToDatabase(e.getAuthor());
+                                //NOTE TO SELF: I should probably make the exception handling better
+                            }
 
+                        } else if (command.matches("^(?i)(call) .*")) {
+                            String ramName = command.replaceFirst("^(?i)(call) ", "");
+                            int ramLocation = Ram.searchRam(ramName, e.getAuthor().getStringID());
+                            if (ramLocation > -1) {
+                                try {
+                                    RhoMain.sendMessage(e.getChannel(), Ram.getRamFromDatabase(ramLocation));
+                                } catch (IOException | GeneralSecurityException ex) {
+                                    ex.printStackTrace();
+                                    RhoMain.sendMessage(e.getChannel(), e.getAuthor().mention() + " It looks like there was an error retrieving " + ramName + " from my database.\n Please try again later.");
+                                }
+                            } else {
+                                RhoMain.sendMessage(e.getChannel(), "Sorry " + e.getAuthor().mention() + ". It looks like you don't own a ram by the name of " + ramName.trim());
+                            }
+                        } else if (command.matches("^(?i)(set ??intro ??song)") && e.getMessage().getAttachments().size() > 0) {
+                            List<IMessage.Attachment> attachments = e.getMessage().getAttachments();
+                            String fileName = "";
+                            File attachment = null;
+                            try {
+                                URL attachmentUrl = new URL(attachments.get(0).getUrl());
+                                File tempCache = new File("tempCache");
+                                tempCache.mkdir();
+                                attachment = new File(tempCache.getPath() + "\\" + attachments.get(0).getFilename());
+                                FileUtils.copyURLToFile(attachmentUrl, attachment);
+                                fileName = attachment.getName();
+                            } catch (IOException ex) {
+                                ex.printStackTrace();
+                            }
+                            boolean tooLong = false;
+                            try {
+                                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(attachment);
+                                AudioFormat format = audioInputStream.getFormat();
+                                System.out.println(format.toString());
+                                int frameSize = format.getFrameSize();
+                                if (format.getFrameSize() == -1 && attachment.getName().endsWith(".mp3")) {
+                                    frameSize = (int) (144 * ((int) format.properties().get("bitrate")) / format.getSampleRate());
+                                    System.out.println(frameSize + " Framesize | " + format.getSampleRate());
+                                }
+                                float audioLength = attachment.length() / (frameSize * format.getFrameRate());
+                                System.out.println(attachment.length() + " | " + format.getFrameRate() + " | " + format.getFrameSize() + " | " + audioLength + " seconds");
+                                if (audioLength > 60) {
+                                    tooLong = true;
+                                    int newLength = (int) (30 * frameSize * format.getFrameRate());
+                                    byte[] byteArray = new byte[newLength];
+                                    audioInputStream.read(byteArray);
+                                    File testFile = new File(attachment.getParent() + "\\tempIntro" + attachment.getName().substring(attachment.getName().lastIndexOf('.')));
+                                    FileOutputStream test = new FileOutputStream(testFile);
+                                    test.write(byteArray);
+                                    test.close();
+                                    audioInputStream.close();
+                                    attachment = testFile;
+                                }
+                                audioInputStream.close();
+                            } catch (UnsupportedAudioFileException | IOException unsupportedAudioFile) {
+                                unsupportedAudioFile.printStackTrace();
+                                RhoMain.sendMessage(e.getChannel(), e.getAuthor().mention() + "Looks like the file you uploaded isn't a supported audio file");
+                                return;
+                            }
+                            javax.activation.MimetypesFileTypeMap fileTypeMap = new MimetypesFileTypeMap();
+                            String mimeType = fileTypeMap.getContentType(attachment);
+                            FileContent mediaContent = new FileContent(mimeType, attachment);
+                            System.out.println(mediaContent.getType());
+                            try {
+                                Drive service = RhoMain.createDriveService();
+                                List<String> parents = new ArrayList<>();
+                                parents.add(HiddenInfo.getIntroSongParent());
+                                com.google.api.services.drive.model.File fileMetadata = new com.google.api.services.drive.model.File();
+                                System.out.println(fileMetadata.getFileExtension());
+                                fileMetadata.setName(e.getAuthor().getName() + "'s Intro Song" + fileName.substring(fileName.lastIndexOf('.')));
+                                fileMetadata.setParents(parents);
+                                com.google.api.services.drive.model.File introSongFile = service.files().create(fileMetadata, mediaContent).setFields("id, parents").execute();
+                                RhoUser rhoUser = RhoUser.findRhoUser(rhoUsers, e.getAuthor());
+                                if (!rhoUser.getIntroSong().equals("null")) {
+                                    Drive.Files.Delete deleteExistingIntroSong = service.files().delete(rhoUser.getIntroSong());
+                                    deleteExistingIntroSong.execute();
+                                }
+                                rhoUser.setIntroSong(introSongFile.getId());
+                                System.out.println(rhoUser.getIntroSong() + " | " + rhoUser.getUser().getName());
+                                rhoUser.updateDatabase();
+                                String message = e.getAuthor().mention() + " your intro song was succesfully set and stored!";
+                                if (tooLong)
+                                    message += "But... it was longer than one minute so I trimmed it to thirty seconds for you";
+                                RhoMain.sendMessage(e.getChannel(), message);
+                            } catch (IOException | GeneralSecurityException ex) {
+                                ex.printStackTrace();
+                            }
+                            try {
+                                FileUtils.deleteDirectory(attachment.getParentFile());
+                            } catch (IOException ex) {
+                                ex.printStackTrace();
+                            }
+                        } else if (command.matches("^(?i)(toggle ??intro ??song)")) {
+                            if (e.getAuthor().getPermissionsForGuild(e.getGuild()).contains(Permissions.ADMINISTRATOR)) {
+                                RhoServer rhoServer = RhoServer.findRhoServer(rhoServers, e.getGuild().getStringID());
+                                boolean allowsIntroSongs = rhoServer.getAllowsIntroSongs();
+                                rhoServer.setAllowsIntroSongs(!allowsIntroSongs);
+                                try {
+                                    rhoServer.updateDatabase();
+                                } catch (GeneralSecurityException | IOException ex) {
+                                    ex.printStackTrace();
+                                    return;
+                                }
+                                RhoMain.sendMessage(e.getChannel(), e.getAuthor().mention() + " Intro songs successfully toggled to " + rhoServer.getAllowsIntroSongs());
+                            }
+                        } else if (command.startsWith("test")) {
+                            Game game = new BlackJackGame(RhoUser.findRhoUser(rhoUsers, e.getAuthor()), e.getChannel());
+                            game.startGame(gameServer);
+                        }
+                        //MessageReceivedEvent messageReceivedEvent = new MessageReceivedEvent(e.getMessage());
+
+                    }
                 }
             }
         }

@@ -3,7 +3,7 @@ import sx.blah.discord.handle.obj.*;
 import java.util.ArrayList;
 
 public abstract class Game {
-    private ArrayList<RhoUser> players;
+    private ArrayList<IUser> players;
     private final IChannel channel;
     private IChannel gameChannel;
     private RhoUser gameOwner;
@@ -50,8 +50,11 @@ public abstract class Game {
     public IRole getPlayerRole(){
         return playerRole;
     }
-    public ArrayList<RhoUser> getPlayers(){
+    public ArrayList<IUser> getPlayers(){
         return players;
+    }
+    public void addPlayer(IUser player){
+        players.add(player);
     }
     public IChannel getChannel(){
         return channel;
@@ -60,8 +63,8 @@ public abstract class Game {
         return gameChannel;
     }
     public void deleteGame(){
-        for(RhoUser player:players){
-            gameChannel.getGuild().kickUser(player.getUser());
+        for(IUser player:players){
+            gameChannel.getGuild().kickUser(player);
         }
         playerRole.delete();
         gameChannel.delete();

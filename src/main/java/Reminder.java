@@ -36,6 +36,8 @@ public class Reminder extends Thread {
         this.user = user;
         if (duration < 0) {
             throw new IllegalArgumentException("Sorry but I can't remind you " + message.trim() + " in -" + DurationParser.parseMillis(duration) + " because that's already happened");
+        }else if(duration>30*24*60*60*60000){
+            throw new IllegalArgumentException("Sorry but I can't remind you " + message.trim() + " in " + DurationParser.parseMillis(duration) + " because that's too far away :(");
         }
         this.duration = duration;
         time = new Date().getTime() + duration;

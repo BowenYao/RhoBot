@@ -1,7 +1,9 @@
 import sx.blah.discord.handle.obj.IChannel;
 import sx.blah.discord.handle.obj.IUser;
 
-public class WaitForUserInput extends Thread {
+import static java.lang.Thread.sleep;
+
+public class WaitForUserInput implements Runnable {
     private String[] input;
     private String userInput;
     private IChannel listeningChannel;
@@ -26,11 +28,12 @@ public class WaitForUserInput extends Thread {
                 e.printStackTrace();
             }
             }
+            System.out.println(user.getName() + " input " + userInput);
     }
     private boolean matches(){
         boolean contains = false;
         for(String inp:input){
-            if(inp.equals(userInput)){
+            if(inp.trim().toUpperCase().equals(userInput)){
                 contains = true;
             }
         }
