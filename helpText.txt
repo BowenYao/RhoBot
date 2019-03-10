@@ -1,0 +1,20 @@
+All commands are prefaced with ]]
+-----------------------------------------------------
+]]help: prints this text :thumbsup:
+]]remindme [message] in  (integer hours) (integer minutes) (integer seconds):
+RhoBot will privately remind you with your message after the given duration has passed
+]]downloadram [ram name]:
+RhoBot will generate a ram with a completely random color scheme 
+]]call [ram name]:
+RhoBot will bring up the idle animation for a ram you've previously 'downloaded'
+	_More ram related features to come? Who knows?_ :wink:
+]]set intro song :
+If an audio file is attached to this command Rhobot will download it and set it as your 'intro song': 
+	An intro song plays every time you enter a voice channel RhoBot is connected to
+	Intro songs can only be at most a minute long. Any intro song longer than a minute will be cut down to the first thirty seconds
+----------------------------
+Admin Commands (Oooh scary)
+Server specific commands that can only be used by admins
+----------------------------
+]]toggle intro song
+Toggles whether or not intro songs play for your server (intro songs are toggled off by default)
