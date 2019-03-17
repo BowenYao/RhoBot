@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e663a8a8-6ddb-4a03-bd72-aae8c3096078" name="Default" comment="" />
+    <list default="true" id="e663a8a8-6ddb-4a03-bd72-aae8c3096078" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BlackJackGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BlackJackGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Deck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Deck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DurationParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DurationParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GameScheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GameScheduler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/RhoEventHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/RhoEventHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WaitForInputScheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WaitForInputScheduler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WaitForUserInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WaitForUserInput.java" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,26 +31,10 @@
       <file leaf-file-name="RhoMain.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/RhoMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1958">
-              <caret line="51" selection-start-line="51" selection-end-line="51" />
+            <state relative-caret-position="17">
+              <caret line="69" selection-start-line="69" selection-end-line="69" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RhoEventHandler.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/RhoEventHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3960">
-              <caret line="586" selection-start-line="586" selection-end-line="586" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#13807#13808#0" expanded="true" />
-                <element signature="e#13844#13845#0" expanded="true" />
-                <element signature="e#14934#14935#0" expanded="true" />
-                <element signature="e#14970#14971#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -48,12 +43,10 @@
       <file leaf-file-name="WaitForInputScheduler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/WaitForInputScheduler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="64" selection-start-line="17" selection-start-column="64" selection-end-line="17" selection-end-column="64" />
+            <state relative-caret-position="136">
+              <caret line="10" column="40" selection-start-line="10" selection-start-column="40" selection-end-line="10" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#194#195#0" expanded="true" />
-                <element signature="e#237#238#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -62,41 +55,32 @@
       <file leaf-file-name="WaitForUserInput.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/WaitForUserInput.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-8">
-              <caret line="14" column="25" lean-forward="true" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
+            <state relative-caret-position="309">
+              <caret line="28" column="43" selection-start-line="28" selection-start-column="43" selection-end-line="28" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1321#1322#0" expanded="true" />
-                <element signature="e#1363#1364#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BlackJackGame.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BlackJackGame.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/BlackJackGame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
-              <caret line="66" selection-start-line="66" selection-end-line="66" />
+            <state relative-caret-position="-1581">
+              <caret line="25" column="79" selection-start-line="25" selection-start-column="79" selection-end-line="25" selection-end-column="79" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#564#565#0" expanded="true" />
-                <element signature="e#587#588#0" expanded="true" />
-                <element signature="e#722#723#0" expanded="true" />
-                <element signature="e#784#785#0" expanded="true" />
-                <element signature="e#1729#1739#0" expanded="true" />
-                <element signature="e#6876#6877#0" expanded="true" />
-                <element signature="e#6908#6909#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClientHandler.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ClientHandler.java">
+      <file leaf-file-name="GameScheduler.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/GameScheduler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="44" selection-start-line="44" selection-end-line="44" />
+            <state relative-caret-position="357">
+              <caret line="36" column="260" selection-start-line="36" selection-start-column="260" selection-end-line="36" selection-end-column="260" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -107,25 +91,17 @@
       <file leaf-file-name="Game.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="901">
-              <caret line="65" column="34" lean-forward="true" selection-start-line="65" selection-start-column="34" selection-end-line="65" selection-end-column="34" />
-              <folding>
-                <element signature="e#1673#1674#0" expanded="true" />
-                <element signature="e#1706#1707#0" expanded="true" />
-                <element signature="e#1750#1751#0" expanded="true" />
-                <element signature="e#1780#1781#0" expanded="true" />
-                <element signature="e#1821#1822#0" expanded="true" />
-                <element signature="e#1849#1850#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="530">
+              <caret line="54" column="26" lean-forward="true" selection-start-line="54" selection-start-column="26" selection-end-line="54" selection-end-column="26" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameScheduler.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/GameScheduler.java">
+      <file leaf-file-name="RhoEventHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/RhoEventHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="47" selection-start-line="47" selection-end-line="47" />
+            <state relative-caret-position="9333">
+              <caret line="580" column="30" selection-start-line="580" selection-start-column="30" selection-end-line="580" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -133,11 +109,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Reminder.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Reminder.java">
+      <file leaf-file-name="Hand.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Hand.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="37" column="181" lean-forward="true" selection-start-line="37" selection-start-column="181" selection-end-line="37" selection-end-column="181" />
+            <state relative-caret-position="68">
+              <caret line="7" column="37" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
+              <folding>
+                <element signature="e#164#165#0" expanded="true" />
+                <element signature="e#220#221#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Deck.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Deck.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="16" column="23" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -153,9 +142,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>searchDatabaseForMultipleColum</find>
-      <find>stringsToMatch</find>
-      <find>batchSearch</find>
       <find>toA</find>
       <find>values</find>
       <find>updateThread</find>
@@ -180,9 +166,12 @@
       <find>467</find>
       <find>deleteGa</find>
       <find>IllegalA</find>
-      <find>new Reminder</find>
+      <find />
       <find>gameChannel</find>
       <find>scheduleWa</find>
+      <find>stand</find>
+      <find>numFinished++</find>
+      <find>que</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -192,12 +181,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/main/java/Card.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Deck.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Hand.java" />
         <option value="$PROJECT_DIR$/src/main/java/InvalidReminderException.java" />
         <option value="$PROJECT_DIR$/src/main/java/RamBattleHandler.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/DurationParser.java" />
         <option value="$PROJECT_DIR$/src/main/java/Timer.java" />
         <option value="$PROJECT_DIR$/src/main/java/RhoBotGUI.form" />
         <option value="$PROJECT_DIR$/src/main/java/ClientHandler.java" />
@@ -207,14 +193,17 @@
         <option value="$PROJECT_DIR$/src/main/java/RhoUser.java" />
         <option value="$PROJECT_DIR$/src/main/java/RhoMain.java" />
         <option value="$PROJECT_DIR$/src/main/java/HiddenInfo.java" />
-        <option value="$PROJECT_DIR$/src/main/java/GameScheduler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/RhoEventHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/Reminder.java" />
         <option value="$PROJECT_DIR$/src/main/java/GameServerEventHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Game.java" />
-        <option value="$PROJECT_DIR$/src/main/java/WaitForUserInput.java" />
+        <option value="$PROJECT_DIR$/src/main/java/DurationParser.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Deck.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Hand.java" />
         <option value="$PROJECT_DIR$/src/main/java/WaitForInputScheduler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/WaitForUserInput.java" />
+        <option value="$PROJECT_DIR$/src/main/java/RhoEventHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/BlackJackGame.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Game.java" />
+        <option value="$PROJECT_DIR$/src/main/java/GameScheduler.java" />
       </list>
     </option>
   </component>
@@ -225,7 +214,7 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-7" />
     <option name="width" value="974" />
     <option name="height" value="1047" />
@@ -236,6 +225,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -262,20 +253,10 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="RhoBot" type="b2602c69:ProjectViewProjectNode" />
-              <item name="RhoBot" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ClientHandler" type="e9f4de52:FormNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -364,7 +345,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -375,12 +357,11 @@
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50053304" side_tool="true" weight="0.3453159" />
       <window_info anchor="right" id="Maven Projects" order="6" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49946696" weight="0.3453159" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49946696" visible="true" weight="0.3453159" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32897604" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Designer" order="3" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.83572894" visible="true" weight="0.18443497" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32897604" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.83572894" visible="true" weight="0.19296375" />
       <window_info id="Structure" order="1" sideWeight="0.16427104" side_tool="true" weight="0.0" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="4" />
@@ -392,6 +373,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32897604" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -399,30 +381,10 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="2" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/RhoMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="833">
-          <caret line="58" column="1" selection-start-line="58" selection-start-column="1" selection-end-line="58" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/BlackJackGame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="29" column="50" selection-start-line="29" selection-start-column="50" selection-end-line="29" selection-end-column="50" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
@@ -443,10 +405,6 @@
           <caret line="47" column="54" selection-start-line="47" selection-start-column="54" selection-end-line="47" selection-end-column="54" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#13807#13808#0" expanded="true" />
-            <element signature="e#13844#13845#0" expanded="true" />
-            <element signature="e#14934#14935#0" expanded="true" />
-            <element signature="e#14970#14971#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -529,10 +487,6 @@
           <caret line="40" column="61" selection-start-line="40" selection-start-column="61" selection-end-line="40" selection-end-column="61" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#13807#13808#0" expanded="true" />
-            <element signature="e#13844#13845#0" expanded="true" />
-            <element signature="e#14934#14935#0" expanded="true" />
-            <element signature="e#14970#14971#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -548,20 +502,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="64" column="6" selection-start-line="64" selection-start-column="6" selection-end-line="64" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Deck.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="5" column="14" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Hand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="7" column="31" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -658,25 +598,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GameServerEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GameServerEvent.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/Ram.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5355">
           <caret line="331" column="173" selection-start-line="331" selection-start-column="173" selection-end-line="331" selection-end-column="173" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2809#2810#0" expanded="true" />
-            <element signature="e#2842#2843#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -684,16 +610,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="179">
           <caret line="73" column="165" selection-start-line="73" selection-start-column="165" selection-end-line="73" selection-end-column="165" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/DurationParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-314">
-          <caret line="6" column="67" selection-start-line="6" selection-start-column="67" selection-end-line="6" selection-end-column="67" />
         </state>
       </provider>
     </entry>
@@ -708,41 +624,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="93" selection-start-line="4" selection-start-column="93" selection-end-line="4" selection-end-column="93" />
-          <folding>
-            <element signature="e#235#236#0" expanded="true" />
-            <element signature="e#268#269#0" expanded="true" />
-            <element signature="e#595#596#0" expanded="true" />
-            <element signature="e#616#617#0" expanded="true" />
-            <element signature="e#304#305#0" expanded="true" />
-            <element signature="e#338#339#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/RhoMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1958">
-          <caret line="51" selection-start-line="51" selection-end-line="51" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Reminder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="37" column="181" lean-forward="true" selection-start-line="37" selection-start-column="181" selection-end-line="37" selection-end-column="181" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GameScheduler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="47" selection-start-line="47" selection-end-line="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="425">
+          <caret line="37" column="181" selection-start-line="37" selection-start-column="181" selection-end-line="37" selection-end-column="181" />
         </state>
       </provider>
     </entry>
@@ -750,11 +638,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="322">
           <caret line="32" column="65" lean-forward="true" selection-start-line="32" selection-start-column="65" selection-end-line="32" selection-end-column="65" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1578#1579#0" expanded="true" />
-            <element signature="e#1616#1617#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -765,10 +648,96 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/DurationParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="7" selection-start-column="7" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ClientHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
+        <state relative-caret-position="646">
           <caret line="44" selection-start-line="44" selection-end-line="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Hand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="7" column="37" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
+          <folding>
+            <element signature="e#164#165#0" expanded="true" />
+            <element signature="e#220#221#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/github/Discord4J/Discord4J/2.10.1/Discord4J-2.10.1.jar!/sx/blah/discord/api/internal/Requests.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="155" selection-start-line="155" selection-end-line="155" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/RhoMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="69" selection-start-line="69" selection-end-line="69" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Deck.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="16" column="23" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/RhoEventHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9333">
+          <caret line="580" column="30" selection-start-line="580" selection-start-column="30" selection-end-line="580" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-10.0.1/lib/src.zip!/java.base/java/util/concurrent/Callable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="64" column="6" selection-start-line="64" selection-start-column="6" selection-end-line="64" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/WaitForInputScheduler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="10" column="40" selection-start-line="10" selection-start-column="40" selection-end-line="10" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/WaitForUserInput.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="28" column="43" selection-start-line="28" selection-start-column="43" selection-end-line="28" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/BlackJackGame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1581">
+          <caret line="25" column="79" selection-start-line="25" selection-start-column="79" selection-end-line="25" selection-end-column="79" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -777,70 +746,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="901">
-          <caret line="65" column="34" lean-forward="true" selection-start-line="65" selection-start-column="34" selection-end-line="65" selection-end-column="34" />
-          <folding>
-            <element signature="e#1673#1674#0" expanded="true" />
-            <element signature="e#1706#1707#0" expanded="true" />
-            <element signature="e#1750#1751#0" expanded="true" />
-            <element signature="e#1780#1781#0" expanded="true" />
-            <element signature="e#1821#1822#0" expanded="true" />
-            <element signature="e#1849#1850#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="530">
+          <caret line="54" column="26" lean-forward="true" selection-start-line="54" selection-start-column="26" selection-end-line="54" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/RhoEventHandler.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/GameScheduler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3960">
-          <caret line="586" selection-start-line="586" selection-end-line="586" />
+        <state relative-caret-position="357">
+          <caret line="36" column="260" selection-start-line="36" selection-start-column="260" selection-end-line="36" selection-end-column="260" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#13807#13808#0" expanded="true" />
-            <element signature="e#13844#13845#0" expanded="true" />
-            <element signature="e#14934#14935#0" expanded="true" />
-            <element signature="e#14970#14971#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/WaitForUserInput.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="14" column="25" lean-forward="true" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1321#1322#0" expanded="true" />
-            <element signature="e#1363#1364#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/WaitForInputScheduler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="64" selection-start-line="17" selection-start-column="64" selection-end-line="17" selection-end-column="64" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#194#195#0" expanded="true" />
-            <element signature="e#237#238#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/BlackJackGame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="66" selection-start-line="66" selection-end-line="66" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#564#565#0" expanded="true" />
-            <element signature="e#587#588#0" expanded="true" />
-            <element signature="e#722#723#0" expanded="true" />
-            <element signature="e#784#785#0" expanded="true" />
-            <element signature="e#1729#1739#0" expanded="true" />
-            <element signature="e#6876#6877#0" expanded="true" />
-            <element signature="e#6908#6909#0" expanded="true" />
           </folding>
         </state>
       </provider>

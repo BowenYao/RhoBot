@@ -6,19 +6,16 @@ public class DurationParser {
     public static long parse(String duration) throws IllegalArgumentException{
         Scanner s = new Scanner(duration.replaceAll("[^0-9]"," "));
         long out = 0;
-        System.out.println(duration + " | " + " | " + s.toString() + duration.replaceAll("[^0-9]"," ") + " HEYYYYY");
         try {
             if (duration.toUpperCase().contains("HOUR")) {
                 out += s.nextInt() * 3600000;
             }
             if (duration.toUpperCase().contains("MINUTE")) {
                 int num = s.nextInt();
-                System.out.println(num);
                 out += num * 60000;
             }
             if (duration.toUpperCase().contains("SECOND")) {
                 int num = s.nextInt();
-                System.out.println(num);
                 out += num * 1000;
             }
         }catch(InputMismatchException e){

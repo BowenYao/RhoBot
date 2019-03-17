@@ -5,6 +5,6 @@ public class Hand extends Deck {
         super(cards);
     }
     public void addCard(Card card){
-        System.out.println(cards.add(card));
+        System.out.println(getCards().add(card));
     }
 }

@@ -8,65 +8,133 @@ import java.util.concurrent.*;
 
 public class BlackJackGame extends Game{
     private Hand[] hands;
-    private IUser[] finalPlayers;
     private ArrayList<Hand> inHands;
-    private ArrayList<Boolean> votePool;
+    private boolean[] votePool;
     private ArrayList<WaitForUserInput> waitThreads = new ArrayList<>();
     private Deck deck;
     private Hand dealHand;
     private static final String GAME_NAME = "blackjack"; //NOTE: ALL CHANNEL NAMES MUST BE LOWERCASE
-    private static final int MAX_PLAYERS = 7;
+   // private static final int MAX_PLAYERS = 7;
+    private int numFinished = 0;
     public BlackJackGame(){
         super();
     }
     BlackJackGame(RhoUser gameOwner,IChannel channel){
-        super(gameOwner,channel,GAME_NAME,MAX_PLAYERS);
+        super(gameOwner,channel,GAME_NAME,7);
     }
     IInvite createInvite(){
-        IInvite invite = this.getGameChannel().createInvite(30,MAX_PLAYERS,true,true);
+        IInvite invite = this.getGameChannel().createInvite(30,getMAX_PLAYERS(),true,true);
         return invite;
     }
     void startGame(){
 
     }
     void runGame(){
-        finalPlayers = this.getPlayers().toArray(new IUser[0]);
-        hands = new Hand[this.getPlayers().size()];
+        //Initial setup]
+       // System.out.println("Starting blackjack game with " + getPlayers().size() + " Players");
+        hands = new Hand[getPlayers().size()];
         inHands = new  ArrayList<Hand>();
-        votePool = new ArrayList<Boolean>(this.getPlayers().size());
+        votePool = new boolean[getPlayers().size()];
         deck = new Deck(false);
         System.out.println(deck.getCards().size());
-        for(int x = 0; x < this.getPlayers().size(); x++){
-            System.out.println(this.getPlayers().get(x).getName());
+        for(int x = 0; x < getPlayers().size(); x++){
+            System.out.println(getPlayers().get(x).getName());
             Hand hand = deck.dealHand(2);
             hands[x] = hand;
             inHands.add(hand);
-            votePool.add(null);
+            votePool[x]= true;
         }
         dealHand = deck.dealHand(2);
-        BlockingQueue<Runnable> runQueue = new ArrayBlockingQueue<Runnable>(getPlayers().size());
-        ThreadPoolExecutor executor = new ThreadPoolExecutor(getPlayers().size()/2, getPlayers().size(),3,TimeUnit.SECONDS,runQueue);
-        for(int x = 0; x < getPlayers().size(); x++){
-           // getPlayers().get(x).addGame(this);
-            RhoMain.sendMessage(getGameChannel(),getPlayers().get(x).mention() + "This is your hand: \n" + hands[x]
-                    +"\n Would you like to stand or hit?");
-            WaitForUserInput waitForUserInput = new WaitForUserInput(new String[]{"HIT","STAND"},getGameChannel(),getPlayers().get(x));
-            executor.submit(waitForUserInput);
-            waitThreads.add(waitForUserInput);
-            RhoEventHandler.getInputScheduler().scheduleWaitThread(waitForUserInput);
+        //End inital setup
+        while(numFinished < votePool.length) {
+            BlockingQueue<Runnable> runQueue = new ArrayBlockingQueue<>(getPlayers().size());
+            ThreadPoolExecutor executor = new ThreadPoolExecutor(getPlayers().size(), getPlayers().size()*2,3,TimeUnit.SECONDS,runQueue);
+            String dealMessage = "";
+            for (int x = 0; x < getPlayers().size(); x++) {
+                // getPlayers().get(x).addGame(this);
+                IUser player = getPlayers().get(x);
+                dealMessage += player.mention() + "This is your hand: \n" + hands[x] + "\n";
+                if (votePool[x] == true) {
+                    dealMessage += " Would you like to stand or hit?";
+                    WaitForUserInput waitForUserInput = new WaitForUserInput(new String[]{"HIT", "STAND"}, getGameChannel(), getPlayers().get(x));
+                    executor.execute(waitForUserInput);
+                    waitThreads.add(waitForUserInput);
+                    RhoEventHandler.getInputScheduler().scheduleWaitThread(waitForUserInput);
+                }
+            }
+            dealMessage += "This is the dealer's hand: \n" + dealHand.getCards().get(0) + new String(new char[dealHand.getCards().size()-1]).replace("\0"," | ? |") + "\n Waiting on players to make a decision...";
+            RhoMain.sendMessage(getGameChannel(), dealMessage);
+            //System.out.println(executor.getTaskCount() + " | " + executor.getCompletedTaskCount()+ "HUHHH") ;
+            try {
+                executor.shutdown();
+                executor.awaitTermination(1, TimeUnit.MINUTES);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+                System.out.println("Blackjack wait for input timed out");
+                deleteGame();
+                //Add error stuffs later
+            }
+            for (WaitForUserInput waitThread : waitThreads) {
+                String input = waitThread.getUserInput();
+                vote(waitThread.getUserInput(), waitThread.getUser());
+                RhoEventHandler.getInputScheduler().descheduleWaitThread(waitThread);
+            }
+            String hitMessage = "";
+            for(int x = 0; x < votePool.length; x++){
+                IUser user = getPlayers().get(x);
+                if(votePool[x]){
+                    hands[x].addCard(deck.drawCard());
+                   // hitMessage+= user.mention() + " This is your new hand: \n" + hands[x] + "\n";
+                    int value = calculateHand(hands[x]);
+                    if(value> 21){
+                        votePool[x] = false;
+                        System.out.println("hmm");
+                        numFinished++;
+                    }
+                }
+            }
+            int dealValue = calculateHand(dealHand);
+            if(dealValue<17){
+                dealHand.addCard(deck.drawCard());
+            }
+            if(!hitMessage.isEmpty())
+                RhoMain.sendMessage(getGameChannel(),hitMessage);
         }
-        RhoMain.sendMessage(this.getGameChannel(),"This is the dealer's hand: \n" + dealHand + "\n Waiting on players to make a decision...");
-        try{
-            executor.awaitTermination(60,TimeUnit.SECONDS);
+        //Initiate endgame
+        String endMessage ="This is the dealer's hand: \n" + dealHand;
+        boolean dealBust = false;
+        int dealValue = calculateHand(dealHand);
+        if(dealValue>21){
+            dealBust = true;
+            endMessage +="\n Looks like the dealer busted :/\n";
+        }else{
+            endMessage+="\n It is worth " + dealValue + "\n";
+        }
+        for(int x = 0; x < getPlayers().size(); x++){
+            IUser user = getPlayers().get(x);
+            int value = calculateHand(hands[x]);
+            int dealerValue = calculateHand(dealHand);
+            endMessage+= user.mention() + " Your final hand is: \n" + hands[x];
+            if(value>21){
+                endMessage+= "\n Awww that's too bad looks like you busted\n";
+            }else if(value>dealValue){
+                endMessage += "\n Woah! Looks like you won!\n";
+            }else if (value==dealerValue){
+                endMessage += "\n You tied with the dealer. It's a draw.\n";
+            }else if(dealerValue<=21){
+                endMessage +="\n Darn looks like you lost...\n";
+            }
+        }
+        RhoMain.sendMessage(getGameChannel(),endMessage);
+        try {
+            System.out.println("Waiting a bit before deleting game");
+            Thread.sleep(60000);
         }catch(InterruptedException e){
             e.printStackTrace();
         }
-        for(WaitForUserInput waitThread:waitThreads){
-            vote(waitThread.getUserInput(),waitThread.getUser());
-        }
-
+        deleteGame();
     }
-    private void continueGame(){
+ /*  private void continueGame(){
         ArrayList<Integer> playerPos = new ArrayList<>(getPlayers().size());
         for(int x = 0; x < getPlayers().size(); x++){
             System.out.println(votePool.get(x));
@@ -98,6 +166,7 @@ public class BlackJackGame extends Game{
             runGame();
         }
     }
+    */
     private int countAces(Hand hand){
         int numAces = 0;
         for(Card card:hand.getCards()){
@@ -138,14 +207,15 @@ public class BlackJackGame extends Game{
         if(input.toUpperCase().equals("HIT")){
             for(int x = 0; x < getPlayers().size(); x++){
                 if(getPlayers().get(x).equals(player)){
-                    votePool.set(x,true);
+                    votePool[x] =true;
                     return true;
                 }
             }
-        }else if(input.toUpperCase().equals("PASS")){
+        }else if(input.toUpperCase().equals("STAND")){
             for(int x = 0; x < getPlayers().size(); x++){
                 if(getPlayers().get(x).equals(player)){
-                    votePool.set(x,false);
+                    votePool[x]=false;
+                    numFinished++;
                     return true;
                 }
             }

@@ -11,6 +11,7 @@ import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedE
 import sx.blah.discord.handle.impl.events.guild.voice.user.UserVoiceChannelJoinEvent;
 import sx.blah.discord.handle.impl.events.shard.DisconnectedEvent;
 import sx.blah.discord.handle.obj.*;
+import sx.blah.discord.util.MessageHistory;
 import sx.blah.discord.util.audio.AudioPlayer;
 
 import javax.activation.MimetypesFileTypeMap;
@@ -401,12 +402,10 @@ public class RhoEventHandler{
                 RhoMain.sendMessage(e.getChannel(),message);
                 System.out.println("\tSent the following message: " + message + " to the " + e.getChannel().getName() +
                                 " channel on the " + e.getGuild().getName() + " server"); //A little bit of self-logging
-            } Removed say function because it is redundant and encourages spam*/ else if (command.toUpperCase().equals("BLACKJACK")) {
-                            RhoUser rhoUser = RhoUser.findRhoUser(rhoUsers, e.getAuthor());
-                            Game game = new BlackJackGame(rhoUser, e.getChannel());
-                            rhoUser.addGame(game);
+            } Removed say function because it is redundant and encourages spam*/
+                        else if (command.toUpperCase().equals("BLACKJACK")) {
+                            Game game = new BlackJackGame(RhoUser.findRhoUser(rhoUsers, e.getAuthor()), e.getChannel());
                             game.startGame(gameServer);
-                            System.out.println("Started blackjack game");
                         } else if (command.matches("^(?i)(remind ??me).*")) {
                             System.out.println("Remind Me Command Triggered");
                             //Remind function has rhobot dm a specific user in after a specified interval of time has passed
@@ -575,8 +574,11 @@ public class RhoEventHandler{
                                 RhoMain.sendMessage(e.getChannel(), e.getAuthor().mention() + " Intro songs successfully toggled to " + rhoServer.getAllowsIntroSongs());
                             }
                         } else if (command.startsWith("test")) {
-                            Game game = new BlackJackGame(RhoUser.findRhoUser(rhoUsers, e.getAuthor()), e.getChannel());
-                            game.startGame(gameServer);
+                            //if(e.getAuthor().getPermissionsForGuild(e.getGuild()).contains(Permissions.ADMINISTRATOR)){
+                                //MessageHistory history = e.getChannel().getMessageHistory();
+                                //e.getChannel().bulkDelete();
+                                //history.bulkDelete();
+                            //}
                         }
                         //MessageReceivedEvent messageReceivedEvent = new MessageReceivedEvent(e.getMessage());
 
@@ -590,10 +592,11 @@ public class RhoEventHandler{
         public void onAction (GuildEvent e){
             System.out.println("GuildAction Occured");
             if (RhoMain.getClient().isReady()) {
-                if (e.getGuild().equals(gameServer.getServer())) {
-                    System.out.println("HELLOOOO " + e.getGuild().getName() + " | " + gameServer.getServer().getName());
-                    GameServerEventHandler.GameServerEvent(e);
+                if(gameServer!=null) {
+                    if (e.getGuild().equals(gameServer.getServer())) {
+                        GameServerEventHandler.GameServerEvent(e);
 
+                    }
                 }
             }
         }
